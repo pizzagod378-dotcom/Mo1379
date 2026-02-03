@@ -1,4 +1,4 @@
--- Auto-execute safe Leave UI met Discord watermark zichtbaar
+-- Auto-execute safe Leave UI met Discord onder de keybind
 spawn(function()
     local Players = game:GetService("Players")
     local UserInputService = game:GetService("UserInputService")
@@ -20,8 +20,8 @@ spawn(function()
     gui.Parent = player:WaitForChild("PlayerGui")
 
     local frame = Instance.new("Frame")
-    frame.Size = UDim2.fromOffset(180, 85) -- compact
-    frame.Position = UDim2.fromScale(0.7, 0.5)
+    frame.Size = UDim2.fromOffset(180, 85) -- compact hoogte
+    frame.Position = UDim2.fromScale(0.7, 0.5) -- spawnplek rechts
     frame.AnchorPoint = Vector2.new(0.5, 0.5)
     frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
     frame.BorderSizePixel = 0
@@ -46,7 +46,7 @@ spawn(function()
     title.ZIndex = 2
     title.Parent = frame
 
-    -- Button
+    -- Keybind Button
     local button = Instance.new("TextButton")
     button.Size = UDim2.new(1, -20, 0, 30)
     button.Position = UDim2.new(0, 10, 0, 24)
@@ -62,17 +62,17 @@ spawn(function()
     btnCorner.CornerRadius = UDim.new(0, 8)
     btnCorner.Parent = button
 
-    -- Discord watermark onder button
+    -- Discord watermark **onder de button, gecentreerd**
     local watermark = Instance.new("TextLabel")
-    watermark.Size = UDim2.new(1, -20, 0, 15)
-    watermark.Position = UDim2.new(0, 10, 0, 56)
+    watermark.Size = UDim2.new(1, 0, 0, 15)
+    watermark.Position = UDim2.new(0, 0, 0, 56) -- net onder button
     watermark.BackgroundTransparency = 1
     watermark.Text = "Discord: iliketrustles"
     watermark.Font = Enum.Font.Gotham
     watermark.TextSize = 12
-    watermark.TextColor3 = Color3.fromRGB(220, 220, 220) -- lichter grijs
-    watermark.TextXAlignment = Enum.TextXAlignment.Left
-    watermark.ZIndex = 3 -- hoger dan frame & button
+    watermark.TextColor3 = Color3.fromRGB(220, 220, 220)
+    watermark.TextXAlignment = Enum.TextXAlignment.Center -- gecentreerd
+    watermark.ZIndex = 3
     watermark.Parent = frame
 
     -- Button logic
