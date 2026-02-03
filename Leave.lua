@@ -1,4 +1,4 @@
--- Auto-execute safe Leave UI (meer naar rechts)
+-- Auto-execute safe Leave UI met Discord watermark
 spawn(function()
     local Players = game:GetService("Players")
     local UserInputService = game:GetService("UserInputService")
@@ -20,8 +20,8 @@ spawn(function()
     gui.Parent = player:WaitForChild("PlayerGui")
 
     local frame = Instance.new("Frame")
-    frame.Size = UDim2.fromOffset(180, 70)
-    frame.Position = UDim2.fromScale(0.7, 0.5) -- meer naar rechts (x = 0.7)
+    frame.Size = UDim2.fromOffset(180, 85) -- iets hoger voor watermark
+    frame.Position = UDim2.fromScale(0.7, 0.5) -- spawnplek naar rechts
     frame.AnchorPoint = Vector2.new(0.5, 0.5)
     frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
     frame.BorderSizePixel = 0
@@ -33,8 +33,22 @@ spawn(function()
     corner.CornerRadius = UDim.new(0, 12)
     corner.Parent = frame
 
+    -- Discord watermark
+    local watermark = Instance.new("TextLabel")
+    watermark.Size = UDim2.new(1, -10, 0, 15)
+    watermark.Position = UDim2.new(0, 5, 0, 2)
+    watermark.BackgroundTransparency = 1
+    watermark.Text = "Discord: iliketrustles"
+    watermark.Font = Enum.Font.Gotham
+    watermark.TextSize = 11
+    watermark.TextColor3 = Color3.fromRGB(180, 180, 180)
+    watermark.TextXAlignment = Enum.TextXAlignment.Left
+    watermark.Parent = frame
+
+    -- Title
     local title = Instance.new("TextLabel")
     title.Size = UDim2.new(1, 0, 0, 22)
+    title.Position = UDim2.new(0, 0, 0, 18) -- iets lager vanwege watermark
     title.BackgroundTransparency = 1
     title.Text = "Leave Key"
     title.Font = Enum.Font.GothamBold
@@ -42,9 +56,10 @@ spawn(function()
     title.TextColor3 = Color3.fromRGB(255, 255, 255)
     title.Parent = frame
 
+    -- Button
     local button = Instance.new("TextButton")
     button.Size = UDim2.new(1, -20, 0, 30)
-    button.Position = UDim2.new(0, 10, 0, 28)
+    button.Position = UDim2.new(0, 10, 0, 42) -- naar beneden ivm watermark + title
     button.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
     button.Text = leaveKey.Name
     button.Font = Enum.Font.Gotham
