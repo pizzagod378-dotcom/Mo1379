@@ -1,16 +1,20 @@
+-- 100% auto-execute Leave UI met Discord en mobiel support
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
 local ContextActionService = game:GetService("ContextActionService")
 
 local player = Players.LocalPlayer
-local gui = player:WaitForChild("PlayerGui")
+local gui = player:WaitForChild("PlayerGui") -- wacht tot PlayerGui er is
 
--- Functie om kick te triggeren
+local leaveKey = Enum.KeyCode.L
+local waitingForKey = false
+
+-- Kick functie
 local function doKick()
     player:Kick("You got kicked because you pressed leave.")
 end
 
--- Discord watermark functie
+-- Discord watermark helper
 local function createWatermark(parent, yPos)
     local watermark = Instance.new("TextLabel")
     watermark.Size = UDim2.new(1, 0, 0, 15)
@@ -19,7 +23,7 @@ local function createWatermark(parent, yPos)
     watermark.Text = "Discord: iliketrustles"
     watermark.Font = Enum.Font.Gotham
     watermark.TextSize = 12
-    watermark.TextColor3 = Color3.fromRGB(220,220,220)
+    watermark.TextColor3 = Color3.fromRGB(220, 220, 220)
     watermark.TextXAlignment = Enum.TextXAlignment.Center
     watermark.Parent = parent
 end
@@ -47,13 +51,10 @@ if UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled then
 
     btn.MouseButton1Click:Connect(doKick)
 
-    createWatermark(frame, 52) -- Discord onder knop
+    createWatermark(frame, 52)
 
 else
     -- PC UI
-    local leaveKey = Enum.KeyCode.L
-    local waitingForKey = false
-
     local frame = Instance.new("Frame")
     frame.Size = UDim2.fromOffset(180,85)
     frame.Position = UDim2.fromScale(0.7,0.5)
@@ -94,11 +95,13 @@ else
 
     createWatermark(frame, 56)
 
+    -- Button key select
     button.MouseButton1Click:Connect(function()
         waitingForKey = true
         button.Text = "Press key..."
     end)
 
+    -- Kick functie via ContextActionService
     local function leaveAction(_, state)
         if state == Enum.UserInputState.Begin then
             doKick()
@@ -113,6 +116,7 @@ else
         leaveKey
     )
 
+    -- Key rebind
     UserInputService.InputBegan:Connect(function(input,gp)
         if gp or not waitingForKey then return end
         if input.KeyCode == Enum.KeyCode.Unknown then return end
