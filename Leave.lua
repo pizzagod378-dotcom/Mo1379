@@ -1,4 +1,4 @@
--- Auto-execute safe Leave UI
+-- Auto-execute safe Leave UI (meer naar rechts)
 spawn(function()
     local Players = game:GetService("Players")
     local UserInputService = game:GetService("UserInputService")
@@ -21,7 +21,7 @@ spawn(function()
 
     local frame = Instance.new("Frame")
     frame.Size = UDim2.fromOffset(180, 70)
-    frame.Position = UDim2.fromScale(0.5, 0.5)
+    frame.Position = UDim2.fromScale(0.7, 0.5) -- meer naar rechts (x = 0.7)
     frame.AnchorPoint = Vector2.new(0.5, 0.5)
     frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
     frame.BorderSizePixel = 0
