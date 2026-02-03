@@ -1,4 +1,4 @@
--- Auto-execute safe Leave UI met Discord onder button
+-- Auto-execute safe Leave UI met Discord watermark zichtbaar
 spawn(function()
     local Players = game:GetService("Players")
     local UserInputService = game:GetService("UserInputService")
@@ -20,13 +20,14 @@ spawn(function()
     gui.Parent = player:WaitForChild("PlayerGui")
 
     local frame = Instance.new("Frame")
-    frame.Size = UDim2.fromOffset(180, 85) -- zelfde hoogte als eerder
-    frame.Position = UDim2.fromScale(0.7, 0.5) -- spawnplek rechts
+    frame.Size = UDim2.fromOffset(180, 85) -- compact
+    frame.Position = UDim2.fromScale(0.7, 0.5)
     frame.AnchorPoint = Vector2.new(0.5, 0.5)
     frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
     frame.BorderSizePixel = 0
     frame.Active = true
     frame.Draggable = true
+    frame.ZIndex = 1
     frame.Parent = gui
 
     local corner = Instance.new("UICorner")
@@ -36,23 +37,25 @@ spawn(function()
     -- Title
     local title = Instance.new("TextLabel")
     title.Size = UDim2.new(1, 0, 0, 22)
-    title.Position = UDim2.new(0, 0, 0, 2) -- bovenaan frame
+    title.Position = UDim2.new(0, 0, 0, 2)
     title.BackgroundTransparency = 1
     title.Text = "Leave Key"
     title.Font = Enum.Font.GothamBold
     title.TextSize = 14
     title.TextColor3 = Color3.fromRGB(255, 255, 255)
+    title.ZIndex = 2
     title.Parent = frame
 
     -- Button
     local button = Instance.new("TextButton")
     button.Size = UDim2.new(1, -20, 0, 30)
-    button.Position = UDim2.new(0, 10, 0, 24) -- onder title
+    button.Position = UDim2.new(0, 10, 0, 24)
     button.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
     button.Text = leaveKey.Name
     button.Font = Enum.Font.Gotham
     button.TextSize = 14
     button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.ZIndex = 2
     button.Parent = frame
 
     local btnCorner = Instance.new("UICorner")
@@ -62,13 +65,14 @@ spawn(function()
     -- Discord watermark onder button
     local watermark = Instance.new("TextLabel")
     watermark.Size = UDim2.new(1, -20, 0, 15)
-    watermark.Position = UDim2.new(0, 10, 0, 56) -- direct onder button
+    watermark.Position = UDim2.new(0, 10, 0, 56)
     watermark.BackgroundTransparency = 1
     watermark.Text = "Discord: iliketrustles"
     watermark.Font = Enum.Font.Gotham
-    watermark.TextSize = 11
-    watermark.TextColor3 = Color3.fromRGB(180, 180, 180)
+    watermark.TextSize = 12
+    watermark.TextColor3 = Color3.fromRGB(220, 220, 220) -- lichter grijs
     watermark.TextXAlignment = Enum.TextXAlignment.Left
+    watermark.ZIndex = 3 -- hoger dan frame & button
     watermark.Parent = frame
 
     -- Button logic
