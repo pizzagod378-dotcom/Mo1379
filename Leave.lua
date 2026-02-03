@@ -84,7 +84,7 @@ spawn(function()
     -- Function to kick
     local function leaveAction(_, state)
         if state == Enum.UserInputState.Begin then
-            player:Kick("You got kicked because you pressed leave.")
+            player:Kick("You got kicked because you are a big black monkey nigger.")
         end
     end
 
